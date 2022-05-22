@@ -1,0 +1,19 @@
+{
+  "customerId": 111111,
+  "firstName": "Rakshitha",
+  "middleName": "Rao",
+  "lastName": "Laxmaiahgari",
+  "dateOfBirth": "2015-07-04",
+  "phoneNumber": "89877454343",
+  "mobileNumber": "8787754545", 
+  "emailAddress": "rakshitha@gmail.com",
+  "address": [{
+    "addressType": "personal",
+    "addressLine1": "plot no -80 , roadno 4",
+    "addressLine2": "Ramaih Nagar, Kukkatpally", 
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "zipcode": 500072
+  }]
+}

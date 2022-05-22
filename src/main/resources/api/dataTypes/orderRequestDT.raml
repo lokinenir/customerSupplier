@@ -1,0 +1,27 @@
+#%RAML 1.0 DataType
+displayName: order Details
+description: This represents the order details of product.
+type: array
+items:
+  properties:
+    productID :
+      description:  contains the  code of the product
+      type: number
+    quantity :
+      description: no of the products in the customer list
+      type: string
+    unitPrice :
+      description: price of the product
+      type: number
+    taxAmount :
+      description: amount of the tax for that product  
+      type: number
+    discountPercentage:
+      description: contains the discount for that product
+      type: number
+    comments:
+      description: contains the comments of the order 
+      type: string
+      required : false 
+    
+    

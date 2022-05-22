@@ -1,0 +1,185 @@
+#%RAML 1.0 Trait
+usage: Apply this trait to any API that needs to implement the common error handling
+description: Any error encountered within the API would result in the the following responses being generated.
+
+responses:
+  400:
+    description: Bad Request
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-400",
+            "errorMessage": "Bad Request - The server will not process the request due to an apparent client error. ",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  401:
+    description: Unauthorized
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-401",
+            "errorMessage": "Unauthorised - Authentication has failed or has not been provided.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  403:
+    description: Forbidden
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-403",
+            "errorMessage": "Forbidden - The client does not have permissions to call the API or its resources.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  404:
+    description: Not Found
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-404",
+            "errorMessage": "Not Found - The resource requested does not exist.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }       
+  405:
+    description: Method Not Allowed
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-405",
+            "errorMessage": "Method not allowed - The method is not supported by the API resource",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }       
+  406:
+    description: Not Acceptable
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-406",
+            "errorMessage": "Not Acceptable - The content generated does not the match the value passed in the ‘Accept’ headers.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  407:
+    description: Proxy Authentication required
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-407",
+            "errorMessage": "Proxy Authentication required - The client must first authenticate itself with the proxy server.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  408:
+    description: Request timed out
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-408",
+            "errorMessage": "Request timed out - The process timed out waiting for a response. The client may wish to re-submit the same request later.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  415:
+    description: Unsupported Media Type
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-415",
+            "errorMessage": "Request content type is not supported",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }       
+  500:
+    description: Internal Server Error
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-008",
+            "errorMessage": "Error occurred while processing the request, please contact support team",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          } 
+  503:
+    description: Connectivity
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-003",
+            "errorMessage": "Error occurred while connecting to the end system, please contact support team",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }      
+  502:
+    description: Bad Gateway
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-004",
+            "errorMessage": "Error occurred while processing the request, please contact support team",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }        
+  504:
+    description: Gateway Time-out
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-011",
+            "errorMessage": "Response timed out",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  501:
+    description: Not Implemented
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-501",
+            "errorMessage": "Not Implemented - The Server does not recognise the request method.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }
+  505:
+    description: HTTP version not supported
+    body:
+      application/json:
+        type: !include commonErrorResponse/1.0.4/commonerrorresponse.raml
+        example:
+          {
+            "correlationId": "1fsfs34-1fsfs84-1fsfs32-1fsfs54",
+            "errorCode": "ERR-505",
+            "errorMessage": "HTTP version not supported - An unsupported protocol was defined in the request.",
+            "timestamp": "2019-11-07T14:56:13.134Z"
+          }

@@ -1,0 +1,25 @@
+#%RAML 1.0 DataType
+displayName: Create a supplier details.
+description: This represents the add supplier request.
+type: object
+properties:
+  supplierName :
+    description:  contains the  name of the supplier
+    type: string
+  contactName :
+    description: contains the  name of the contracter
+    type: string
+  contactEmail ID:
+    description: contains the email id of the contracter
+    required: false
+  contactPhoneNumber:
+    description: contains the phone number of the supplier  
+    type: number
+  address:
+    description: contains the adress of the customer
+    type: !include addressDetailsDT.raml
+  comments:
+    description: contains the comments of the supplier  
+    type: string
+    required : false   
+

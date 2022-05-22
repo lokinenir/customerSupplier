@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4f37c003-66c8-490f-93da-117b4f5d466f" basePath="customer_supplier" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="customer-supplierFlow" doc:id="3dd8ee3a-35cb-4b41-bfe1-a3142ba67903" >
+		<http:listener doc:name="HTTP Listener" doc:id="0201d2eb-01b1-4273-9bba-fb492196c476" config-ref="HTTP_Listener_config" path="/users/customer" allowedMethods="POST"/>
+		<logger level="INFO" doc:name="Logger" doc:id="b7c8d8bd-e0c7-44d4-8433-ea26d90e334c" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="855bb001-c84f-4ee5-9e92-7c589ab0bebb" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+"INSERT INTO dreamyo3_CustomerSupplier.Customers 
+(firstName, lastName, emailAddress, middleName, phoneNumber, mobileNumber, addressLine1, addressLine2, city, state, country, zipcode) 
+VALUES( '" ++ payload.firstName ++ "', '" ++ payload.lastName ++ "', '" ++ payload.emailAddress ++ "', '" ++ payload.middleName ++ "', '" ++ payload.phoneNumber 
+++ "', '" ++ payload.mobileNumber ++ "', '" ++ payload.address[0].addressLine1 ++ "', '" ++ payload.address[0].addressLine2 ++ "', '" ++ payload.address[0].city 
+++ "', '" ++ payload.address[0].state ++ "', '" ++ payload.address[0].country ++ "', '" ++ payload.address[0].zipcode ++ "');"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

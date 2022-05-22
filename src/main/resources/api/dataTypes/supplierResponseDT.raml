@@ -1,0 +1,30 @@
+#%RAML 1.0 DataType
+displayName: suplier Details
+description: This represents the supplier details object.
+type: array
+items:
+  properties:
+    supplierCode:
+      description: contains the code of the supplier
+      type: number
+    supplierName :
+      description:  contains the  name of the supplier
+      type: string
+    contactName :
+      description: contains the  name of the contracter
+      type: string
+    contactEmail ID:
+      description: contains the email id of the contracter
+      required: false
+    contactPhoneNumber:
+      description: contains the phone number of the supplier  
+      type: number
+    address:
+      description: contains the adress of the customer
+      type: !include addressDetailsDT.raml
+    comments:
+      description: contains the comments of the supplier  
+      type: string
+      required : false 
+    
+    

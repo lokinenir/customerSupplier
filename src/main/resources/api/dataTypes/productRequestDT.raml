@@ -1,0 +1,26 @@
+#%RAML 1.0 DataType
+displayName: Create a productr details.
+description: This represent addition of  the add products of the specific customer
+type: array
+items:
+  properties:
+    shortDescription :
+      description: small this is the description of the product
+      type: string
+    unitPrice :
+      description: contains the  price of the product
+      type: string
+    longDescription :
+      description: small this is the description of the produc
+      type: string
+    supplierCode:
+      description: contains the code of the supplier  
+      type: number
+    supplierPartNo:
+      description: contains the supplier partition number
+      type: number
+    comments:
+      description: contains the comments of the supplier  
+      type: string
+      required : false   
+

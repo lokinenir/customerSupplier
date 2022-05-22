@@ -1,0 +1,205 @@
+#%RAML 1.0
+title: customer_Supplier_project
+baseUri: http://localhost:8081/api/v1/customer_supplier/
+traits:
+  jwt: !include traits/jwtValidationT.raml
+  client-id-required: !include traits/cilentIDEnforcementT.raml
+  commonErrorHandling: !include traits/common-error-handling.raml
+
+types:
+  customerRequest:
+    type: !include dataTypes/customerRequestDT.raml
+  customerResponse:
+    type: !include dataTypes/customerResponseDT.raml 
+  supplierRequest:
+    type: !include dataTypes/supplierRequestDT.raml
+  supplierResponse:
+    type: !include dataTypes/supplierResponseDT.raml
+  userResponse:
+    type: !include dataTypes/userResponseDT.raml
+  productRequest:
+    type: !include dataTypes/productRequestDT.raml   
+  productResponse:
+    type: !include dataTypes/productResponseDT.raml
+  orderRequest:
+    type: !include dataTypes/orderRequestDT.raml
+  orederResponse:
+    type: !include dataTypes/orderResponseDT.raml
+
+
+/users:
+  displayName: Creates Suppliers and Customers
+  # /supplier:
+  #     displayName: Create Supplier
+  #     description: Allows the users to create a supplier.
+  #     post:
+  #       description: Create a supplier details.
+  #       is: [jwt, client-id-required, commonErrorHandling]
+  #       body:
+  #         application/json:
+  #           type: supplierRequest
+  #           example: !include examples/supplierRequest.json
+  #       responses:
+  #         200:
+  #           body:
+  #             application/json:
+  #               type: userResponse
+  #               example: !include examples/userResponse.json
+  # /{supplierID}:
+  #   displayName: get supplier id
+  #   description: get the details of the supplier wilth given id
+  #   get:
+  #     description: get a particular supplier details
+  #     is : [jwt, client-id-required, commonErrorHandling]
+  #     queryParameters:
+  #       supplierId:
+  #         description: contains the id of the supplier 
+  #         type: number
+  #     responses:
+  #       200:
+  #         description: Successful call to get the supplier details for the particular supplier
+  #         body:
+  #           application/json:
+  #             type: supplierResponse
+  #             example: !include examples/supplierResponse.json
+                
+  #   /products:
+  #     displayName: create an product
+  #     description: allows the customers to create an product
+  #     post:
+  #       description: Create a product details
+  #       is: [jwt, client-id-required, commonErrorHandling]   
+  #       body:
+  #         application/json:
+  #           type: productRequest
+  #           example: !include examples/productRequest.json
+  #       responses:
+  #           200:
+  #             body:
+  #               application/json:
+  #                 type: productResponse
+  #                 example: !include examples/productResponse.json
+
+  /customer:
+    displayName: Create Customer
+    description: Allows the users to create a Customer.
+    post:
+      description: Create a Customer details.
+      is: [jwt, client-id-required, commonErrorHandling]
+      body:
+        application/json:
+          type: customerRequest
+          example: !include examples/customerRequest.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: userResponse
+              example: !include examples/userResponse.json
+  /{customerId}:
+    displayName: get customer id
+    description: get the details of the customer wilth given id
+    get:
+      description: get a particular customer details
+      is : [jwt, client-id-required, commonErrorHandling]
+      queryParameters:
+        supplierId:
+          description: contains the id of the customer 
+          type: number
+      responses:
+        200:
+          description: Successful call to get the customer details for the particular customer
+          body:
+            application/json:
+              type: customerResponse
+              example: !include examples/customerResponse.json
+    # /orders:
+    #   displayName: create an product
+    #   description: allows the customers to create an product
+    #   post:
+    #     description: Create a product details
+    #     is: [jwt, client-id-required, commonErrorHandling]   
+    #     body:
+    #       application/json:
+    #         type: orderRequest
+    #         example: !include examples/orderRequest.json
+    #     responses:
+    #         200:
+    #           body:
+    #             application/json:
+    #               type: orederResponse
+    #               example: !include examples/orderResponse.json
+    #   get:
+
+    #   /{orderId}:
+    #     displayName: get order id of specific customer
+    #     description: get the details of the orders wilth given id
+    #     get:
+    #       description: get a particular order  details of the customer
+    #       is : [jwt, client-id-required, commonErrorHandling]
+    #       queryParameters:
+    #         supplierId:
+    #           description: contains the id of the order of the customer 
+    #           type: number
+    #       responses:
+    #         200:
+    #           description: Successful call to get the order details for the particular customer
+    #           body:
+    #             application/json:
+    #               type: userResponse
+    #               example: !include examples/orderResponse.json 
+    #     /products: 
+    #       displayName: get product id of the specific order
+    #       description: get the details of the product for the specific id 
+
+    #       post:
+    #         description: get a particular customer details
+    #         is : [jwt, client-id-required, commonErrorHandling]
+    #         queryParameters:
+    #           supplierId:
+    #             description: contains the id of the customer 
+    #             type: number
+    #         responses:
+    #           200:
+    #             description: Successful call to get the customer details for the particular customer
+    #             body:
+    #               application/json:
+    #                 type: userResponse
+    #                 example: !include examples/userResponse.json 
+          
+    #       get:
+    #         description: get a particular order  details of the customer
+    #         is : [jwt, client-id-required, commonErrorHandling]
+    #         queryParameters:
+    #           supplierId:
+    #             description: contains the products for certain order id
+    #             type: number
+    #         responses:
+    #           200:
+    #             description: Successful call to get the product details for the particular order id 
+    #             body:
+    #               application/json:
+    #                 type: userResponse
+    #                 example: !include examples/productResponse.json
+          
+    #       /{productId}:
+    #         get:
+    #           description: get a particular product  details of certain order
+    #           is : [jwt, client-id-required, commonErrorHandling]
+    #           queryParameters:
+    #             supplierId:
+    #               description: contains the products for certain product id
+    #               type: number
+    #           responses:
+    #             200:
+    #               description: Successful call to get the product details for the particular product id 
+    #               body:
+    #                 application/json:
+    #                   type: userResponse
+    #                   example: !include examples/productResponse.json
+            
+
+          
+
+
+ 

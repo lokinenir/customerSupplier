@@ -1,0 +1,28 @@
+#%RAML 1.0 DataType
+displayName: Proposal Address Details
+description: This represents the proposal address details object.
+type: array  
+items:
+  properties:
+    addressType:
+      description: Type of the address
+      type: string
+    addressLine1:
+      description: The first line of the address
+      type: string
+    addressLine2:
+      description: The second line of the Address
+      type: string
+    city:
+      description: Name of the city
+      type: string
+    state:
+      description: Name of the state
+      type: string
+    country:
+      description: Name of the country
+      type: string
+    zipcode:
+      description: Zipcode or postcode of the address
+      type: number
+    

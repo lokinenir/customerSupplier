@@ -1,0 +1,32 @@
+#%RAML 1.0 DataType
+displayName: Create a Customer details.
+description: This represents the add customer request.
+type: object
+properties:
+  firstName:
+    description: contains the frist name of the customer
+    type: string
+  middleName :
+    description:  contains the frist name of the customer
+    type: string
+  lastName:
+    description: contains the frist name of the customer  
+    type: string
+  dateOfBirth:
+    description: contains the date of birth of the customer
+    type: date-only
+  phoneNumber:
+    description: contains the phone number of the customer
+    type: string
+    required: false
+  mobileNumber:
+    description: contains the mobile number of the customer
+    type: string
+  emailAddress:
+    description: contains the email id of the customer
+    type: string
+  address:
+    description: contains the adress of the customer
+    type: !include addressDetailsDT.raml
+
+ 
