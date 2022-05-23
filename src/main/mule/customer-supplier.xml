@@ -9,20 +9,31 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4f37c003-66c8-490f-93da-117b4f5d466f" basePath="customer_supplier" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="dd9aa69c-3186-4711-bdeb-d264d6239c54" >
+		<db:my-sql-connection host="162.241.252.23" port="3306" user="dreamyo3_rakshitha" password="12ReseT!@" database="dreamyo3_CustomerSupplier" />
+	</db:config>
 	<flow name="customer-supplierFlow" doc:id="3dd8ee3a-35cb-4b41-bfe1-a3142ba67903" >
 		<http:listener doc:name="HTTP Listener" doc:id="0201d2eb-01b1-4273-9bba-fb492196c476" config-ref="HTTP_Listener_config" path="/users/customer" allowedMethods="POST"/>
 		<logger level="INFO" doc:name="Logger" doc:id="b7c8d8bd-e0c7-44d4-8433-ea26d90e334c" message="#[payload]"/>
-		<ee:transform doc:name="Transform Message" doc:id="855bb001-c84f-4ee5-9e92-7c589ab0bebb" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/java
----
-"INSERT INTO dreamyo3_CustomerSupplier.Customers 
+		
+		<db:insert doc:name="Insert Manufacturer to DB" doc:id="ace5aab7-5f87-4441-9ecd-893ae3746f9a" config-ref="Database_Config">
+			<db:sql >INSERT INTO dreamyo3_CustomerSupplier.Customers 
 (firstName, lastName, emailAddress, middleName, phoneNumber, mobileNumber, addressLine1, addressLine2, city, state, country, zipcode) 
-VALUES( '" ++ payload.firstName ++ "', '" ++ payload.lastName ++ "', '" ++ payload.emailAddress ++ "', '" ++ payload.middleName ++ "', '" ++ payload.phoneNumber 
-++ "', '" ++ payload.mobileNumber ++ "', '" ++ payload.address[0].addressLine1 ++ "', '" ++ payload.address[0].addressLine2 ++ "', '" ++ payload.address[0].city 
-++ "', '" ++ payload.address[0].state ++ "', '" ++ payload.address[0].country ++ "', '" ++ payload.address[0].zipcode ++ "');"]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
+VALUES(:firstName,:lastName, :emailAddress, :middleName, :phoneNumber, :mobileNumber, :addressLine1, :addressLine2, :city, :state, :country, :zipcode)</db:sql>
+			<db:input-parameters ><![CDATA[#[{
+firstName : payload.firstName,
+lastName : payload.lastName,
+emailAddress : payload.emailAddress,
+middleName : payload.middleName,
+phoneNumber : payload.phoneNumber,
+mobileNumber : payload.mobileNumber,
+addressLine1 : payload.address[0].addressLine1,
+addressLine2 : payload.address[0].addressLine2,
+city  :  payload.address[0].city,
+state : payload.address[0].state,
+country : payload.address[0].country,
+zipcode:payload.address[0].zipcode
+}]]]></db:input-parameters>
+		</db:insert>
 	</flow>
 </mule>
